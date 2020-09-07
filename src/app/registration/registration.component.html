@@ -1,0 +1,84 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-5 bLeft">
+      <div class="box">
+        <h3>Registration Form</h3>
+        <form #studentForm="ngForm" (ngSubmit)="onSubmit(studentForm)">
+          <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="studentService.selectedStudent._id">
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="name">Student Name</label>
+              <input type="name" class="form-control" name="studentName" #studentName="ngModel" [(ngModel)]="studentService.selectedStudent.studentName" id="name" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="rollNo">Roll No.</label>
+              <input type="text" class="form-control" name="rollNo" #rollNo="ngModel" [(ngModel)]="studentService.selectedStudent.rollNo" id="rollNo" required>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="class">Class</label>
+              <input type="text" class="form-control" id="class" name="class" #class="ngModel" [(ngModel)]="studentService.selectedStudent.class" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" class="form-control" id="address" name="address" #address="ngModel" [(ngModel)]="studentService.selectedStudent.address" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" class="form-control" id="phone" name="phone" #phone="ngModel" [(ngModel)]="studentService.selectedStudent.phone" pattern="^(\d{10})|(\d{4}-\d{3}-\d{3})|(\d{3}\s\d{3}\s\d{4})|(\d{3}\.\d{3}\.\d{4})$" required>
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender</label>
+              <select name="gender" class="form-control" id="gender" #gender="ngModel" [(ngModel)]="studentService.selectedStudent.gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Other</option>
+              </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <button type="button" class="btn btn-outline-success btn-block" (click)="resetForm(studentForm)">Reset</button>
+            </div>
+            <div class="form-group col-md-6">
+              <button type="submit" class="btn btn-success btn-block" [disabled]="!studentForm.valid">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+
+    <div class="col-md-7 bRight">
+      <table class="table table-responsive borde">
+        <thead class="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>RollNo</th>
+            <th>Class</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Gender</th>
+            <th>Edit or Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of studentService.students">
+            <td>{{student.studentName}}</td>
+            <td>{{student.rollNo}}</td>
+            <td>{{student.class}}</td>
+            <td>{{student.address}}</td>
+            <td>{{student.phone}}</td>
+            <td>{{student.gender}}</td>
+            <a (click)="edit(student)">
+            <i class="fa fa-pencil fa-xs pl-1 pr-1 m-2" style="font-size:20px; color:blue" aria-hidden="true"></i></a>
+            <a (click)="delete(student._id,studentForm)">
+            <i class="fa fa-trash fa-xs" style="font-size:20px; color:red" aria-hidden="true"></i></a>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

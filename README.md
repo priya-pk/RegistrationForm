@@ -25,3 +25,4 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+"# RegistrationForm. Here, admin can edit, delete, add student details. Admin's username must contain minimum 6 letters and password must contain capital letters,small letters and numbers."  
